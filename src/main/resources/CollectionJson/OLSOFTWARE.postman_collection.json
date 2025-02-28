@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "feb7181b-0c78-44e5-b806-13849e4b9715",
+		"name": "OLSOFTWARE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12519304"
+	},
+	"item": [
+		{
+			"name": "1- http://localhost:8080/auth/nuevo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"email\": \"jhonc@gmail.com\", \"nombre\": \"jhont\", \"nombreUsuario\": \"jhon\", \"password\": \"1234\", \"roles\": [ \"admin\" ]}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/nuevo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"nuevo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2- http://localhost:8080/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"nombreUsuario\": \"jhon\", \"password\": \"1234\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/municipio/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"nombre\": \"CERRITO\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/municipio/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"municipio",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comerciante/lista?page=0&size=2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaG9uIiwicm9sZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE3NDA2Mjk5NTAsImV4cCI6MTc0MDYzMzU1MH0.6_4r7WnPZ8sKzXxeRUgtZb6sW9a6Qz0tZZXKka-q4v9dpxGZPhkzjC_J3ZD-aSQegEXl82Jsa3FrakBoXrKMtA"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/comerciante/lista?page=0&size=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comerciante",
+						"lista"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comerciante/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaG9uIiwicm9sZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE3NDA3NTg3NzMsImV4cCI6MTc0MDc2MjM3M30.lRK16SVTMlqeUceH4m30sFeCnCRrEhZlB0ZArkqCP4aWg4cDOLhiV9DnAHP77Oq-NhBWF-n6DZPjn5r1l0g4dw"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"correo\": \"olga@gmail.com\",\r\n\t\"estado\": false,\r\n\t\"fechaRegistro\": \"2025-02-26T21:14:00.742+0000\",\r\n\t\"municipio\": \r\n        {\r\n        \"id\": 1,\r\n        \"nombre\": \"CALI\"\r\n        },\r\n\t\"razonSocial\": \"MUEBLES SAS\",\r\n\t\"telefono\": \"3215474125\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/comerciante/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comerciante",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comerciante/update/12",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaG9uIiwicm9sZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE3NDA2MzQwODEsImV4cCI6MTc0MDYzNzY4MX0.3KYrzw2S65xUIsnDC-6PhH7s16L4NMDwM513ntgPtnpE0oYMxk0C8d4vZrkBZ3puxvfNRFXQ4tOC7gCNzLSZ7A"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"correo\": \"olga@gmail.com\", \"estado\": true, \"fechaRegistro\": \"2025-02-26T21:14:00.742+0000\", \"municipio\": \"Candelaria\", \"razonSocial\": \"MUEBLES SAS\", \"telefono\": \"3215474125\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/comerciante/update/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comerciante",
+						"update",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comerciante/delete/12",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaG9uIiwicm9sZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE3NDA2MzQwODEsImV4cCI6MTc0MDYzNzY4MX0.3KYrzw2S65xUIsnDC-6PhH7s16L4NMDwM513ntgPtnpE0oYMxk0C8d4vZrkBZ3puxvfNRFXQ4tOC7gCNzLSZ7A"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/comerciante/delete/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comerciante",
+						"delete",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/municipio/lista",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaG9uIiwicm9sZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE3NDA3NTg3NzMsImV4cCI6MTc0MDc2MjM3M30.lRK16SVTMlqeUceH4m30sFeCnCRrEhZlB0ZArkqCP4aWg4cDOLhiV9DnAHP77Oq-NhBWF-n6DZPjn5r1l0g4dw"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/municipio/lista",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"municipio",
+						"lista"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comerciante/generarCsv",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaG9uIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpYXQiOjE3NDA3NjM2NTYsImV4cCI6MTc0MDc2NzI1Nn0.0ciQlQaAqtLUU9gZneL-uqhbs1AciVtxwuHvRdWEUm2TYktRZjdro_g5s6TU-uSwHJPmkX2jGFRRaWhU8fL97w"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/comerciante/generarCsv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comerciante",
+						"generarCsv"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
