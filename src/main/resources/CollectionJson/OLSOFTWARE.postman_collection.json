@@ -22,7 +22,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"email\": \"jhonc@gmail.com\", \"nombre\": \"jhont\", \"nombreUsuario\": \"jhon\", \"password\": \"1234\", \"roles\": [ \"admin\" ]}"
+					"raw": "{\r\n\t\"email\": \"jhon@gmail.com\",\r\n\t\"nombre\": \"jhon torres\",\r\n\t\"nombreUsuario\": \"jhon\",\r\n\t\"password\": \"1234\",\r\n\t\"roles\": [\r\n\t\t\"admin\"\r\n\t]\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/auth/nuevo",
@@ -55,7 +55,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"nombreUsuario\": \"jhon\", \"password\": \"1234\"}"
+					"raw": "{ \"email\": \"jhon\", \"password\": \"/i5rHAm341zuSehLAtwrKg==\"}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/auth/login",
@@ -312,6 +312,45 @@
 					"path": [
 						"comerciante",
 						"generarCsv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/comerciante/estado/4?estado=false",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaG9uIiwicm9sZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE3NDA4NjUwMTIsImV4cCI6MTc0MDg2ODYxMn0.Ccw9Nvb_hmNfvptcYJ-HrHSSMz7wAwE6kFHh7OBBOfJlLItY0IfydvtmMkR4WsMFi_jzgN98fvTazQDYsqICAA"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/comerciante/estado/4?estado=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"comerciante",
+						"estado",
+						"4"
+					],
+					"query": [
+						{
+							"key": "estado",
+							"value": "false"
+						}
 					]
 				}
 			},

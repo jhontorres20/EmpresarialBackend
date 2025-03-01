@@ -1,16 +1,18 @@
 package com.empresarial.demo.crud.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 import javax.persistence.SequenceGenerator;
-
-import com.empresarial.demo.crud.security.entity.Usuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +37,14 @@ public class Comerciante {
     private String correo;
     private Timestamp fechaRegistro;
     private Boolean estado;
+    
+    @OneToMany(mappedBy = "comerciante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Establecimiento> establecimientos;
 
+    // Desvincular establecimientos antes de eliminar
+    @PreRemove
+    private void preRemove() {
+        establecimientos.forEach(establecimiento -> establecimiento.setComerciante(null));
+    }
+    
 }

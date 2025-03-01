@@ -105,6 +105,18 @@ public class ComercianteService {
         
         return new ResponseEntity(new Mensaje("Comerciante actualizado correctamente"), HttpStatus.OK);
     }
+    
+    public ResponseEntity<String> cambiarEstado(int id, Boolean estado){    	    	        
+	    Comerciante comercianteNuevo = getOne(id).get();           
+        comercianteNuevo.setEstado(estado);
+        comercianteRepository.save(comercianteNuevo);
+        
+        if(Boolean.TRUE.equals(estado)) {
+        	return new ResponseEntity(new Mensaje("Comerciante habilitado correctamente"), HttpStatus.OK);
+        }else {
+        	return new ResponseEntity(new Mensaje("Comerciante deshabilitado"), HttpStatus.OK);
+        }        
+    }
 
     public ResponseEntity<String> delete(int id){    	
     	if(!existsById(id))

@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -85,6 +86,14 @@ public class ComercianteController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id")int id){
     	return comercianteService.delete(id);
+    }
+    
+    @ApiOperation("Habilitar y/o deshabilitar comerciante")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PatchMapping("/estado/{id}")
+    public ResponseEntity<String> habilitar(@PathVariable("id")int id,
+    		@RequestParam(name = "estado") Boolean estado){
+    	return comercianteService.cambiarEstado(id, estado);
     }
     
     @ApiOperation("Reporte comerciantes Activos")
