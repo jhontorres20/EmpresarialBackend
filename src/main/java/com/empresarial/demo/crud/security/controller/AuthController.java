@@ -37,16 +37,10 @@ public class AuthController {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
     UsuarioService usuarioService;
 
     @Autowired
     RolService rolService;
-
-    @Autowired
-    JwtProvider jwtProvider;
     
     @Autowired
     RolRepository rolRepository;
@@ -82,21 +76,12 @@ public class AuthController {
     }
     
     @PostMapping("/login")
-    public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
-        if(bindingResult.hasErrors())
-            return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
-        Authentication authentication =
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getEmail(), loginUsuario.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtProvider.generateToken(authentication);
-        JwtDto jwtDto = new JwtDto(jwt);
-        return new ResponseEntity(jwtDto, HttpStatus.OK);
+    public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){        
+        return usuarioService.login(loginUsuario, bindingResult);
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<JwtDto> refresh(@RequestBody JwtDto jwtDto) throws ParseException {
-        String token = jwtProvider.refreshToken(jwtDto);
-        JwtDto jwt = new JwtDto(token);
-        return new ResponseEntity(jwt, HttpStatus.OK);
+    public ResponseEntity<JwtDto> refresh(@RequestBody JwtDto jwtDto) throws ParseException {        
+        return usuarioService.refresh(jwtDto);
     }
 }
