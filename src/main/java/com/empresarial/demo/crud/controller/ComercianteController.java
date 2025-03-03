@@ -97,6 +97,7 @@ public class ComercianteController {
     }
     
     @ApiOperation("Reporte comerciantes Activos")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/generarCsv")
     public ResponseEntity<FileSystemResource> generarCSVNative() throws IOException {
         String archivoRuta = comercianteService.generarArchivoCSVNative();
