@@ -19,6 +19,7 @@ import com.empresarial.demo.crud.security.entity.Usuario;
 import com.empresarial.demo.crud.security.jwt.JwtProvider;
 import com.empresarial.demo.crud.security.repository.UsuarioRepository;
 
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.Base64;
 import java.util.Optional;
@@ -46,6 +47,10 @@ public class UsuarioService {
     public Optional<Usuario> getByNombreUsuario(String nombreUsuario){
         return usuarioRepository.findByNombreUsuario(nombreUsuario);
     }
+    
+    public Optional<Usuario> getByEmail(String email){
+        return usuarioRepository.findByEmail(email);
+    }
 
     public boolean existsByNombreUsuario(String nombreUsuario){
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
@@ -69,9 +74,9 @@ public class UsuarioService {
 			return new ResponseEntity("Error al autenticar", HttpStatus.BAD_REQUEST);
 		}
     	if(bindingResult.hasErrors())
-            return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Campo Email incorrecto"), HttpStatus.BAD_REQUEST);
         Authentication authentication =
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getEmail(), decryptedPassword));
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getEmail().trim(), decryptedPassword));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
         JwtDto jwtDto = new JwtDto(jwt);
@@ -85,14 +90,16 @@ public class UsuarioService {
     }
     
     private String decrypt(String encryptedPassword) throws Exception {
-        IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
-        SecretKeySpec keySpec = new SecretKeySpec(secretKey.getBytes("UTF-8"), "AES");
+        String decryptedBytesFound = "";
+    	IvParameterSpec iv = new IvParameterSpec(initVector.getBytes(StandardCharsets.UTF_8));
+        SecretKeySpec keySpec = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), "AES");
 
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, keySpec, iv);
 
         byte[] decodedPassword = Base64.getDecoder().decode(encryptedPassword);
         byte[] decryptedBytes = cipher.doFinal(decodedPassword);
-        return new String(decryptedBytes, "UTF-8");
+        decryptedBytesFound = new String(decryptedBytes, StandardCharsets.UTF_8);
+        return decryptedBytesFound;
     }
 }

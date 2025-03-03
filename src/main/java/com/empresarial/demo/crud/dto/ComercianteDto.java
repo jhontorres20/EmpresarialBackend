@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import javax.validation.constraints.NotBlank;
 
+import com.empresarial.demo.crud.entity.Municipio;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ public class ComercianteDto {
   
     @NotBlank
     private String razonSocial;
-    private Integer municipio;
+    private Municipio municipio;
     @NotBlank
     private String telefono;    
     private String correo;

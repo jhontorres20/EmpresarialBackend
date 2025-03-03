@@ -31,7 +31,6 @@ import lombok.NoArgsConstructor;
 public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_usuario_Sequence")
-    //@Generated(GenerationTime.INSERT)
     @Column(name = "id", updatable = false, nullable = false, insertable = false)
     private int id;
     @NotNull

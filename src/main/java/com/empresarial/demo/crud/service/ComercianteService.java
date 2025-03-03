@@ -91,7 +91,7 @@ public class ComercianteService {
 	        if(StringUtils.isBlank(comercianteDto.getRazonSocial()))
 	            return new ResponseEntity(new Mensaje("el nombre para actualizar es obligatorio"), HttpStatus.BAD_REQUEST);
 	            	        
-	    Municipio municipio = municipioRepository.findById(comercianteDto.getMunicipio()).get();
+	    Municipio municipio = municipioRepository.findById(comercianteDto.getMunicipio().getId()).get();
 	        
         comercianteNuevo = getOne(id).get();           
         comercianteNuevo.setCorreo(comercianteDto.getCorreo());

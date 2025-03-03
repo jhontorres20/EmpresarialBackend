@@ -68,14 +68,14 @@ public class ComercianteController {
     }
     
     @ApiOperation("Registrar comerciante")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PostMapping("/create")
     public ResponseEntity<String> create(@RequestBody Comerciante comerciante){        
         return comercianteService.save(comerciante);        
     }
 
     @ApiOperation("Actualizar comerciante")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable("id")int id, @RequestBody ComercianteDto comercianteDto){
         return comercianteService.update(id, comercianteDto);        

@@ -40,12 +40,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             }
         } catch (Exception e){
             logger.error("fail en el método doFilter " + e.getMessage());
-        }
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-        res.setHeader("Access-Control-Allow-Credentials", "true");
-        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
-        res.setHeader("Access-Control-Expose-Headers", "Content-Length, Authorization");
+        }        
         filterChain.doFilter(req, res);
     }
 

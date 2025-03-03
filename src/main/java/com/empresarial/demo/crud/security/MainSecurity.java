@@ -12,10 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.empresarial.demo.crud.security.jwt.JwtEntryPoint;
 import com.empresarial.demo.crud.security.jwt.JwtTokenFilter;
@@ -24,7 +21,6 @@ import com.empresarial.demo.crud.security.service.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
